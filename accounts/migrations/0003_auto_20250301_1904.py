@@ -28,5 +28,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_teams, delete_teams),  # Adds the team entries
+        migrations.RunPython(create_teams),
+        migrations.RunPython(delete_teams)  # Adds the team entries
     ]
