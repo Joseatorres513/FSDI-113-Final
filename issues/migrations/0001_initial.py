@@ -35,4 +35,12 @@ class Migration(migrations.Migration):
                 ('status', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='issues.status')),
             ],
         ),
+
+        migrations.RunPython(
+            lambda apps, schema_editor: apps.get_model("issues", "Status").objects.bulk_create([
+                apps.get_model("issues", "Status")(name="to do", description="An issue for which work has not yet started"),
+                apps.get_model("issues", "Status")(name="in progress", description="An issue actively being worked on"),
+                apps.get_model("issues", "Status")(name="done", description="An issue for which work has completed"),
+            ])
+        ),
     ]
